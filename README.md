@@ -1,1 +1,1 @@
-Learning C++ through making a VST plugin.
+Learning C++ by making a VST plugin.
