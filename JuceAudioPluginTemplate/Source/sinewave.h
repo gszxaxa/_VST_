@@ -12,18 +12,17 @@ class SineWave{
         void process (juce::AudioBuffer<float>& buffer);
         
         float getAmplitude() const { return amplitude; }
-        float getFrequency() const { return frequency; }
-        void setAmplitude(const float newAmplitude) {amplitude = newAmplitude;}
-        void setFrequency(const float newFrequency) {frequency = newFrequency;}
+        float getFrequency() { return smoothedFreq.getNextValue(); }
+        void setAmplitude(const float newAmplitude) { amplitude = newAmplitude; }
+        void setFrequency(const float newFrequency) { smoothedFreq.setTargetValue(newFrequency); }
                                              
     
     private:
         
         float amplitude = 0.1f;
-        float frequency = 220.0f;
         float currentSampleRate = 0.0f;
-        float timeIncrement = 0.0f;
-        std::vector<float> currentTime;
+        std::vector<float> phases;
+        juce::SmoothedValue<float , juce::ValueSmoothingTypes::Multiplicative> smoothedFreq;
 
 
 };

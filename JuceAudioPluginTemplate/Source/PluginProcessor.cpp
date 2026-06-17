@@ -209,7 +209,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout AudioPluginAudioProcessor::c
     
     
     return {
-    std::make_unique<juce::AudioParameterFloat>(juce::ParameterID { "freqhz" }, "Frequency", 20.0f, 20000.0f, 220.0f),
+    std::make_unique<juce::AudioParameterFloat>(juce::ParameterID { "freqhz" }, "Frequency", 100.0f, 3000.0f, 100.0f),
     
 
 
