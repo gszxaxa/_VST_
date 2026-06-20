@@ -13,13 +13,14 @@ class SineWave{
         
         float getAmplitude() const { return amplitude; }
         float getFrequency() { return smoothedFreq.getNextValue(); }
+        
         void setAmplitude(const float newAmplitude) { amplitude = newAmplitude; }
         void setFrequency(const float newFrequency) { smoothedFreq.setTargetValue(newFrequency); }
                                              
     
     private:
         
-        float amplitude = 0.1f;
+        float amplitude = 0.2f;
         float currentSampleRate = 0.0f;
         std::vector<float> phases;
         juce::SmoothedValue<float , juce::ValueSmoothingTypes::Multiplicative> smoothedFreq;

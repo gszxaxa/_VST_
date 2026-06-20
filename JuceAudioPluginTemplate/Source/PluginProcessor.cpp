@@ -94,6 +94,7 @@ void AudioPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
 
     frequencyParam = state.getRawParameterValue("freqhz");
     playParam = state.getRawParameterValue("play");
+    volumerParam = state.getRawParameterValue("volume");
 }
 
 void AudioPluginAudioProcessor::releaseResources()
@@ -163,7 +164,7 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     
     
     sinewave.setFrequency(freq);
-    sinewave.setAmplitude(shouldBePlaying ? 0.4f : 0.0f);
+    sinewave.setAmplitude(shouldBePlaying ? volumerParam->load() : 0.0f);
     
     sinewave.process(buffer);
 }
@@ -212,7 +213,10 @@ juce::AudioProcessorValueTreeState::ParameterLayout AudioPluginAudioProcessor::c
     std::make_unique<juce::AudioParameterFloat>(juce::ParameterID { "freqhz" }, "Frequency", 100.0f, 3000.0f, 100.0f),
     
 
+    std::make_unique<juce::AudioParameterBool>(juce::ParameterID { "play" }, "Play", true),
+    
 
-    std::make_unique<juce::AudioParameterBool>(juce::ParameterID { "play" }, "Play", true)
+    std::make_unique<juce::AudioParameterFloat>(juce::ParameterID { "volume" }, "Volume", 0.0f, 1.0f, 0.5f)
     };
+
 }

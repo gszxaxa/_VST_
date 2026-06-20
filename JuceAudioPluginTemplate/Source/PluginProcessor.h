@@ -55,6 +55,8 @@ private:
     std::atomic<float>* frequencyParam;
     std::atomic<float>* playParam;
 
+    std::atomic<float>* volumerParam;
+
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessor)

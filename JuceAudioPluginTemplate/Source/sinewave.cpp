@@ -18,21 +18,22 @@ void SineWave::process (juce::AudioBuffer<float>& buffer){
     for(int channel = 0; channel < buffer.getNumChannels(); ++channel){
        
         auto* output = buffer.getWritePointer(channel);
+        auto& phase = phases[channel];
+
 
         for(int sample = 0; sample< buffer.getNumSamples(); ++sample){
 
             float frequency = smoothedFreq.getNextValue();
 
-            const float phaseInc = ((juce::MathConstants<float>::pi * frequency) / currentSampleRate);
+            const float phaseInc = ((2.0f*juce::MathConstants<float>::pi * frequency) / currentSampleRate);
 
-
-            output[sample] = amplitude * std::sinf(phases[channel]);
+            output[sample] = amplitude * std::sinf(phase);
             
-            phases[channel] += phaseInc;
+            phase += phaseInc;
 
-            if (phases[channel] >= juce::MathConstants<float>::pi){
+            if (phase >= 2.0f * juce::MathConstants<float>::pi){
                 
-                phases[channel] -= juce::MathConstants<float>::pi;
+                phase -= 2.0f * juce::MathConstants<float>::pi;
             }
 
        } 
