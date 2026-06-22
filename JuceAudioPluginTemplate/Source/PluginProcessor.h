@@ -55,7 +55,7 @@ private:
     std::atomic<float>* frequencyParam;
     std::atomic<float>* playParam;
 
-    std::atomic<float>* volumerParam;
+    std::atomic<float>* volumeParam;
 
 
     //==============================================================================

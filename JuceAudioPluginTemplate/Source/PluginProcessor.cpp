@@ -94,7 +94,7 @@ void AudioPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
 
     frequencyParam = state.getRawParameterValue("freqhz");
     playParam = state.getRawParameterValue("play");
-    volumerParam = state.getRawParameterValue("volume");
+    volumeParam = state.getRawParameterValue("volume");
 }
 
 void AudioPluginAudioProcessor::releaseResources()
@@ -164,7 +164,7 @@ void AudioPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     
     
     sinewave.setFrequency(freq);
-    sinewave.setAmplitude(shouldBePlaying ? volumerParam->load() : 0.0f);
+    sinewave.setAmplitude(shouldBePlaying ? volumeParam->load() : 0.0f);
     
     sinewave.process(buffer);
 }
