@@ -1,5 +1,6 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "OscilloscopeComponent.h"
 
 //==============================================================================
 AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAudioProcessor& p)
@@ -24,6 +25,8 @@ AudioPluginAudioProcessorEditor::AudioPluginAudioProcessorEditor (AudioPluginAud
     volumeSlider.setTextBoxStyle(juce::Slider::NoTextBox,false,300,100);
 
     addAndMakeVisible(volumeSlider);
+
+    addAndMakeVisible(oscilloscope);
 
 
     playButton.onClick = [this](){
@@ -62,5 +65,7 @@ void AudioPluginAudioProcessorEditor::resized()
     playButton.setBounds(getWidth() / 2 - 50, getHeight()/2 + 150, 100, 20);
     
     volumeSlider.setBounds(getWidth() / 2 - 150, getHeight()/2 - 100, 100, 175);
+
+    oscilloscope.setBounds(0,0,getWidth(),getHeight()/2-150);
     
 }

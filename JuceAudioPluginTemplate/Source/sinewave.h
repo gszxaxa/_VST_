@@ -11,6 +11,10 @@ class SineWave{
         void prepare (double sampleRate, int numChannels);
         void process (juce::AudioBuffer<float>& buffer);
         
+        juce::AudioBuffer<float> ringbuffer;
+        int ringBufferWritePos = 0;
+
+
         float getAmplitude() { return smoothedAmp.getCurrentValue(); }
         float getFrequency() { return smoothedFreq.getCurrentValue(); }
         

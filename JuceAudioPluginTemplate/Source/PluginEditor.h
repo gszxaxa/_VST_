@@ -2,6 +2,7 @@
 
 #include "PluginProcessor.h"
 #include "Square.h"
+#include "OscilloscopeComponent.h"
 
 //==============================================================================
 class AudioPluginAudioProcessorEditor final : public juce::AudioProcessorEditor
@@ -13,6 +14,7 @@ public:
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
+    
 
 private:
     Square square;    
@@ -32,6 +34,10 @@ private:
     juce::AudioProcessorValueTreeState::ButtonAttachment playButtonAttachment;
 
     juce::AudioProcessorValueTreeState::SliderAttachment volumeAttachment;
+
+    OscilloscopeComponent oscilloscope { processorRef.getSineWave()};
+
+    
 
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioPluginAudioProcessorEditor)

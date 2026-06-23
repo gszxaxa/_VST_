@@ -39,6 +39,8 @@ set(SourceFiles
         Source/Square.cpp
         Source/sinewave.h
         Source/sinewave.cpp
+        Source/OscilloscopeComponent.h
+        Source/OscilloscopeComponent.cpp
 )
 
 # Change these to your own preferences

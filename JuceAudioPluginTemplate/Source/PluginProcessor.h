@@ -45,6 +45,7 @@ public:
 
 
     juce::AudioProcessorValueTreeState& getState() {return state;}
+    SineWave& getSineWave() {return sinewave;}
 
 private:
 

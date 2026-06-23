@@ -10,6 +10,10 @@ void SineWave::prepare(const double sampleRate, const int numChannels){
     
     smoothedAmp.reset(sampleRate, 0.2f);
     smoothedAmp.setCurrentAndTargetValue(amplitude);
+
+    ringbuffer.setSize(1, 1024);
+    ringbuffer.clear();
+    ringBufferWritePos = 0;
 }
 
 void SineWave::process (juce::AudioBuffer<float>& buffer){
@@ -33,6 +37,9 @@ void SineWave::process (juce::AudioBuffer<float>& buffer){
 
             output[sample] = smoothedAmp.getNextValue() * std::sinf(phase);
             
+            ringbuffer.setSample(0, ringBufferWritePos, output[sample]);
+            ringBufferWritePos = (ringBufferWritePos + 1) % ringbuffer.getNumSamples();
+
             phase += phaseInc;
 
             if (phase >= 2.0f * juce::MathConstants<float>::pi){
